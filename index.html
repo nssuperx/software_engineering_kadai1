@@ -7,31 +7,31 @@
     <script type="text/javascript">
         function calc() {
             //大人
-            var adult = document.form.goods1.selectedIndex * 2000; // 単価を設定
+            var adult = document.form.goods1.value * 2000; // 単価を設定
             document.form.field1.value = adult; // 小計を表示
             
             //大学生
-            var univ_stu = document.form.goods2.selectedIndex * 1500; 
+            var univ_stu = document.form.goods2.value * 1500; 
             document.form.field2.value = univ_stu;
             
             //高校生中学生
-            var high_stu = document.form.goods3.selectedIndex * 1000;
+            var high_stu = document.form.goods3.value * 1000;
             document.form.field3.value = high_stu;
             
             //小学生
-            var elem_stu = document.form.goods4.selectedIndex * 500;
+            var elem_stu = document.form.goods4.value * 500;
             document.form.field4.value = elem_stu;
             
             //幼児
-            //var elem_stu = document.form.goods5.selectedIndex * 0;
-            //document.form.field5.value = elem_stu;
+            //var infant = document.form.goods5.value * 0;
+            //document.form.field5.value = infant;
             
             //60歳以上
-            var over_60 = document.form.goods6.selectedIndex * 1000;
+            var over_60 = document.form.goods6.value * 1000;
             document.form.field6.value = over_60;
             
             //身障者
-            var per_disability = document.form.goods7.selectedIndex * 800;
+            var per_disability = document.form.goods7.value * 800;
             document.form.field7.value = per_disability;
             
             
@@ -54,102 +54,53 @@
 
         <table>
             <tr>
-                <th>商品名</th>
+                <th></th>
                 <th>単価</th>
-                <th>数量</th>
+                <th>人数</th>
                 <th>金額</th>
             </tr>
             <tr>
-                <td>商品サンプル1</td>
-                <td align="right">500円</td>
-                <td><select name="goods1" onChange="calc()">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select></td>
+                <td>大人</td>
+                <td align="right">2000円</td>
+                <td><input type="number" name="goods1" onChange="calc()" min="0"></td>
                 <td><input type="text" name="field1" size="8" value="0"> 円</td>
             </tr>
             <tr>
-                <td>商品サンプル2</td>
-                <td align="right">1,000円</td>
-                <td><select name="goods2" onChange="calc()">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select></td>
+                <td>大学生</td>
+                <td align="right">1,500円</td>
+                <td><input type="number" name="goods2" onChange="calc()" min="0"></td>
                 <td><input type="text" name="field2" size="8" value="0"> 円</td>
             </tr>
             <tr>
-                <td>商品サンプル2</td>
+                <td>高校生・中学生</td>
                 <td align="right">1,000円</td>
-                <td><select name="goods3" onChange="calc()">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select></td>
+                <td><input type="number" name="goods3" onChange="calc()" min="0"></td>
                 <td><input type="text" name="field3" size="8" value="0"> 円</td>
             </tr>
             <tr>
-                <td>商品サンプル2</td>
-                <td align="right">1,000円</td>
-                <td><select name="goods4" onChange="calc()">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select></td>
+                <td>小学生</td>
+                <td align="right">500円</td>
+                <td><input type="number" name="goods4" onChange="calc()" min="0"></td>
                 <td><input type="text" name="field4" size="8" value="0"> 円</td>
             </tr>
             <!--
             <tr>
-                <td>商品サンプル2</td>
+                <td>幼児</td>
                 <td align="right">1,000円</td>
-                <td><select name="goods5" onChange="calc()">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select></td>
+                <td><input type="number" name="goods5" onChange="calc()" min="0"></td>
                 <td><input type="text" name="field5" size="8" value="0"> 円</td>
             </tr>
 -->
             <tr>
-                <td>商品サンプル2</td>
+                <td>60歳以上</td>
                 <td align="right">1,000円</td>
-                <td><select name="goods6" onChange="calc()">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select></td>
+                <td><input type="number" name="goods6" onChange="calc()" min="0"></td>
                 <td><input type="text" name="field6" size="8" value="0"> 円</td>
             </tr>
             <tr>
-                <td>商品サンプル3</td>
-                <td align="right">3,000円</td>
-                <td><select name="goods7" onChange="calc()">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select></td>
+                <td>身障者</td>
+                <td align="right">800円</td>
+                <td><input type="number" name="goods7" onChange="calc()" min="0"></td>
                 <td><input type="text" name="field7" size="8" value="0"> 円</td>
             </tr>
             <tr>
