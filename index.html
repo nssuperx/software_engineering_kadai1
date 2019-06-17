@@ -6,38 +6,55 @@
     <title>施設利用料金計算</title>
     <script type="text/javascript">
         function calc() {
+            //価格設定
+            var adult_price = 2000;
+            var univ_stu_price = 1500;
+            var high_stu_price = 1000;
+            var elem_stu_price = 500;
+            var infant_price = 0;
+            var over_60_price = 1000;
+            var per_disability = 800;
+            
+            //割引率
+            var discount_rate_kenmin = 0.2;
+            var discount_rate_group = 0.1;
+            
             //大人
-            var adult = document.form.goods1.value * 2000; // 単価を設定
+            var adult_num = Math.max(parseInt(document.form.price1.value),0);
+            var adult_kenmin_num = Math.min(Math.max(parseInt(document.form.kenmin1.value),0),adult_num);
+            //少数を入力されたとき、負の数を入力されたとき、県民の数がもとの人数より多いとき対策
+            var adult_nomal_num = adult_num - adult_kenmin_num;
+            var adult = adult_nomal_num * adult_price + adult_kenmin_num * (adult_price * (1 - discount_rate_kenmin)); // 単価を設定
             document.form.field1.value = adult; // 小計を表示
             
             //大学生
-            var univ_stu = document.form.goods2.value * 1500; 
+            var univ_stu = Math.max(parseInt(document.form.price2.value),0) * 1500; 
             document.form.field2.value = univ_stu;
             
             //高校生中学生
-            var high_stu = document.form.goods3.value * 1000;
+            var high_stu = Math.max(parseInt(document.form.price3.value),0) * 1000;
             document.form.field3.value = high_stu;
             
             //小学生
-            var elem_stu = document.form.goods4.value * 500;
+            var elem_stu = Math.max(parseInt(document.form.price4.value),0) * 500;
             document.form.field4.value = elem_stu;
             
             //幼児
-            //var infant = document.form.goods5.value * 0;
-            //document.form.field5.value = infant;
+            var infant = Math.max(parseInt(document.form.price5.value),0) * 0;
+            document.form.field5.value = infant;
             
             //60歳以上
-            var over_60 = document.form.goods6.value * 1000;
+            var over_60 = Math.max(parseInt(document.form.price6.value),0) * 1000;
             document.form.field6.value = over_60;
             
             //身障者
-            var per_disability = document.form.goods7.value * 800;
+            var per_disability = Math.max(parseInt(document.form.price7.value),0) * 800;
             document.form.field7.value = per_disability;
             
             
 
             // 合計を計算
-            var total = adult + univ_stu + high_stu + elem_stu + over_60 + per_disability;
+            var total = adult + univ_stu + high_stu + elem_stu + infant + over_60 + per_disability;
 
             // 設定終了
 
@@ -57,55 +74,61 @@
                 <th></th>
                 <th>単価</th>
                 <th>人数</th>
+                <th>県民感謝デー<br>身分証提示人数</th>
                 <th>金額</th>
             </tr>
             <tr>
                 <td>大人</td>
                 <td align="right">2000円</td>
-                <td><input type="number" name="goods1" onChange="calc()" min="0"></td>
-                <td><input type="text" name="field1" size="8" value="0"> 円</td>
+                <td><input type="number" name="price1" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="number" name="kenmin1" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="text" name="field1" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
             <tr>
                 <td>大学生</td>
                 <td align="right">1,500円</td>
-                <td><input type="number" name="goods2" onChange="calc()" min="0"></td>
-                <td><input type="text" name="field2" size="8" value="0"> 円</td>
+                <td><input type="number" name="price2" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="number" name="kenmin2" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="text" name="field2" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
             <tr>
                 <td>高校生・中学生</td>
                 <td align="right">1,000円</td>
-                <td><input type="number" name="goods3" onChange="calc()" min="0"></td>
-                <td><input type="text" name="field3" size="8" value="0"> 円</td>
+                <td><input type="number" name="price3" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="number" name="kenmin3" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="text" name="field3" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
             <tr>
                 <td>小学生</td>
                 <td align="right">500円</td>
-                <td><input type="number" name="goods4" onChange="calc()" min="0"></td>
-                <td><input type="text" name="field4" size="8" value="0"> 円</td>
+                <td><input type="number" name="price4" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="number" name="kenmin4" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="text" name="field4" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
-            <!--
             <tr>
                 <td>幼児</td>
-                <td align="right">1,000円</td>
-                <td><input type="number" name="goods5" onChange="calc()" min="0"></td>
-                <td><input type="text" name="field5" size="8" value="0"> 円</td>
+                <td align="right">0円</td>
+                <td><input type="number" name="price5" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="number" name="kenmin5" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="text" name="field5" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
--->
             <tr>
                 <td>60歳以上</td>
                 <td align="right">1,000円</td>
-                <td><input type="number" name="goods6" onChange="calc()" min="0"></td>
-                <td><input type="text" name="field6" size="8" value="0"> 円</td>
+                <td><input type="number" name="price6" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="number" name="kenmin6" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="text" name="field6" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
             <tr>
                 <td>身障者</td>
                 <td align="right">800円</td>
-                <td><input type="number" name="goods7" onChange="calc()" min="0"></td>
-                <td><input type="text" name="field7" size="8" value="0"> 円</td>
+                <td><input type="number" name="price7" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="number" name="kenmin7" onChange="calc()" min="0" step="1" value="0"></td>
+                <td><input type="text" name="field7" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
             <tr>
-                <td align="right" colspan="3"><strong>合計</strong></td>
-                <td><input type="text" name="field_total" size="8" value="0"> 円</td>
+                <td align="right" colspan="4"><strong>合計</strong></td>
+                <td><input type="text" name="field_total" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
         </table>
 
