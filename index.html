@@ -32,35 +32,35 @@
             </tr>
             <tr>
                 <td>高校生・中学生</td>
-                <td align="right" id="price3">1,000円</td>
+                <td align="right" id="price3"></td>
                 <td><input type="number" name="number3" onChange="calc()" min="0" step="1" value="0"></td>
                 <td><input type="number" name="kenmin3" onChange="calc()" min="0" step="1" value="0"></td>
                 <td><input type="text" name="field3" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
             <tr>
                 <td>小学生</td>
-                <td align="right" id="price4">500円</td>
+                <td align="right" id="price4"></td>
                 <td><input type="number" name="number4" onChange="calc()" min="0" step="1" value="0"></td>
                 <td><input type="number" name="kenmin4" onChange="calc()" min="0" step="1" value="0"></td>
                 <td><input type="text" name="field4" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
             <tr>
                 <td>幼児</td>
-                <td align="right" id="price5">0円</td>
+                <td align="right" id="price5"></td>
                 <td><input type="number" name="number5" onChange="calc()" min="0" step="1" value="0"></td>
                 <td><input type="number" name="kenmin5" onChange="calc()" min="0" step="1" value="0"></td>
                 <td><input type="text" name="field5" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
             <tr>
                 <td>60歳以上</td>
-                <td align="right" id="price6">1,000円</td>
+                <td align="right" id="price6"></td>
                 <td><input type="number" name="number6" onChange="calc()" min="0" step="1" value="0"></td>
                 <td><input type="number" name="kenmin6" onChange="calc()" min="0" step="1" value="0"></td>
                 <td><input type="text" name="field6" size="8" value="0" readonly="readonly"> 円</td>
             </tr>
             <tr>
                 <td>身障者</td>
-                <td align="right" id="price7">800円</td>
+                <td align="right" id="price7"></td>
                 <td><input type="number" name="number7" onChange="calc()" min="0" step="1" value="0"></td>
                 <td><input type="number" name="kenmin7" onChange="calc()" min="0" step="1" value="0"></td>
                 <td><input type="text" name="field7" size="8" value="0" readonly="readonly"> 円</td>
@@ -84,6 +84,10 @@
         var infant_price = 0;
         var over60_price = 1000;
         var per_disability_price = 800;
+        
+        //割引率
+        var discount_rate_kenmin = 0.2;
+        var discount_rate_group = 0.1;
 
         //価格表示
         document.getElementById("price1").innerHTML = adult_price + "円";
@@ -93,10 +97,6 @@
         document.getElementById("price5").innerHTML = infant_price + "円";
         document.getElementById("price6").innerHTML = over60_price + "円";
         document.getElementById("price7").innerHTML = per_disability_price + "円";
-
-        //割引率
-        var discount_rate_kenmin = 0.2;
-        var discount_rate_group = 0.1;
         
         //団体割引が適用されているか表示する
         document.getElementById("group").innerHTML = "団体割引適用なし";
