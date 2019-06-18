@@ -110,68 +110,71 @@
             //少数を入力されたとき、負の数を入力されたとき、県民の数がもとの人数より多いとき対策
             var adult_normal_num = adult_num - adult_kenmin_num;
             var adult = adult_normal_num * adult_price + adult_kenmin_num * (adult_price * (1 - discount_rate_kenmin)); // 単価を設定
-            document.form.field1.value = adult; // 小計を表示
 
             //大学生
             var univ_stu_num = Math.max(parseInt(document.form.number2.value), 0);
             var univ_stu_kenmin_num = Math.min(Math.max(parseInt(document.form.kenmin2.value), 0), univ_stu_num);
             var univ_stu_normal_num = univ_stu_num - univ_stu_kenmin_num;
-            var univ_stu = univ_stu_normal_num * univ_stu_price + univ_stu_kenmin_num * (univ_stu_price * (1 - discount_rate_kenmin));
-            document.form.field2.value = univ_stu;
+            var univ_stu = univ_stu_normal_num * univ_stu_price + univ_stu_kenmin_num * (univ_stu_price * (1 - discount_rate_kenmin));            
 
             //高校生中学生
             var high_stu_num = Math.max(parseInt(document.form.number3.value), 0);
             var high_stu_kenmin_num = Math.min(Math.max(parseInt(document.form.kenmin3.value), 0), high_stu_num);
             var high_stu_normal_num = high_stu_num - high_stu_kenmin_num;
-            var high_stu = high_stu_normal_num * high_stu_price + high_stu_kenmin_num * (high_stu_price * (1 - discount_rate_kenmin));
-            document.form.field3.value = high_stu;
+            var high_stu = high_stu_normal_num * high_stu_price + high_stu_kenmin_num * (high_stu_price * (1 - discount_rate_kenmin));            
 
             //小学生
             var elem_stu_num = Math.max(parseInt(document.form.number4.value), 0);
             var elem_stu_kenmin_num = Math.min(Math.max(parseInt(document.form.kenmin4.value), 0), elem_stu_num);
             var elem_stu_normal_num = elem_stu_num - elem_stu_kenmin_num;
             var elem_stu = elem_stu_normal_num * elem_stu_price + elem_stu_kenmin_num * (elem_stu_price * (1 - discount_rate_kenmin));
-            document.form.field4.value = elem_stu;
 
             //幼児
             var infant_num = Math.max(parseInt(document.form.number5.value), 0);
             var infant_kenmin_num = Math.min(Math.max(parseInt(document.form.kenmin5.value), 0), infant_num);
             var infant_normal_num = infant_num - infant_kenmin_num;
             var infant = infant_normal_num * infant_price + infant_kenmin_num * (infant_price * (1 - discount_rate_kenmin));
-            document.form.field5.value = infant;
 
             //60歳以上
             var over60_num = Math.max(parseInt(document.form.number6.value), 0);
             var over60_kenmin_num = Math.min(Math.max(parseInt(document.form.kenmin6.value), 0), over60_num);
             var over60_normal_num = over60_num - over60_kenmin_num;
             var over60 = over60_normal_num * over60_price + over60_kenmin_num * (over60_price * (1 - discount_rate_kenmin));
-            document.form.field6.value = over60;
 
             //身障者
             var per_disability_num = Math.max(parseInt(document.form.number7.value), 0);
             var per_disability_kenmin_num = Math.min(Math.max(parseInt(document.form.kenmin7.value), 0), per_disability_num);
             var per_disability_normal_num = per_disability_num - per_disability_kenmin_num;
             var per_disability = per_disability_normal_num * per_disability_price + per_disability_kenmin_num * (per_disability_price * (1 - discount_rate_kenmin));
-            document.form.field7.value = per_disability;
-
-
 
             //合計を計算
             var total = adult + univ_stu + high_stu + elem_stu + infant + over60 + per_disability;
             document.getElementById("group").innerHTML = "団体割引適用なし";
 
+            //10人以上だったら
             if ((adult_num + univ_stu_num + high_stu_num + elem_stu_num + infant_num + over60_num + per_disability_num) >= 10) {
                 total = total * (1 - discount_rate_group);
+                adult = adult * (1 - discount_rate_group);
+                univ_stu = univ_stu * (1 - discount_rate_group);
+                high_stu = high_stu * (1 - discount_rate_group);
+                elem_stu = elem_stu * (1 - discount_rate_group);
+                infant = infant * (1 - discount_rate_group);
+                over60 = over60 * (1 - discount_rate_group);
+                per_disability = per_disability * (1 - discount_rate_group);
                 document.getElementById("group").innerHTML = "団体割引適用あり";
             }
-
-
-
-            // 設定終了
-
-
-            document.form.field_total.value = total; // 合計を表示
-
+            
+            //小計を表示
+            document.form.field1.value = adult;
+            document.form.field2.value = univ_stu;
+            document.form.field3.value = high_stu;
+            document.form.field4.value = elem_stu;
+            document.form.field5.value = infant;
+            document.form.field6.value = over60;
+            document.form.field7.value = per_disability;
+            
+            //合計を表示
+            document.form.field_total.value = total;
         }
 
     </script>
