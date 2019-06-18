@@ -15,13 +15,13 @@
             var over60_price = 1000;
             var per_disability_price = 800;
             
-            document.form.price1.value = adult_price + "円";
-            document.form.price2.value = univ_stu_price;
-            document.form.price3.value = high_stu_price;
-            document.form.price4.value = elem_stu_price;
-            document.form.price5.value = infant_price;
-            document.form.price6.value = over60_price;
-            document.form.price7.value = per_disability_price;
+            document.getElementsByName("price1").innerHTML = adult_price + "円";
+            //document.form.price2.value = univ_stu_price;
+            //document.form.price3.value = high_stu_price;
+            //document.form.price4.value = elem_stu_price;
+            //document.form.price5.value = infant_price;
+            //document.form.price6.value = over60_price;
+            //document.form.price7.value = per_disability_price;
             
             //割引率
             var discount_rate_kenmin = 0.2;
