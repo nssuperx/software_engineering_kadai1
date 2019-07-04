@@ -1,1 +1,8 @@
-# software_engineering_kadai1
+# ソフトウェア工学 課題
+
+## 動作環境
+* ブラウザ（Google Chrome推奨）
+
+## 確認できている不具合
+* スペースのみの入力でNot a Number
+* Google Chrome以外のブラウザでは普通に文字入力を受け付ける
