@@ -7,11 +7,14 @@ var infant_price = 0;
 var over60_price = 1000;
 var per_disability_price = 800;
 
+var price = {"大人":2000,"大学生":1500,"高校生":1000,"小学生":500,"乳幼児":0,"60歳以上":1000,"身障者":800};
+
 //割引率
 var discount_rate_kenmin = 0.2;
 var discount_rate_group = 0.1;
 
 //価格表示
+/*
 document.getElementById("price1").innerHTML = adult_price + "円";
 document.getElementById("price2").innerHTML = univ_stu_price + "円";
 document.getElementById("price3").innerHTML = high_stu_price + "円";
@@ -22,6 +25,14 @@ document.getElementById("price7").innerHTML = per_disability_price + "円";
 
 //団体割引が適用されているか表示する
 document.getElementById("group").innerHTML = "団体割引適用なし";
+*/
+
+window.onload = function(){
+    var priceElements = document.getElementsByClassName("price");
+    for(key in price){
+        
+    }
+}
 
 //計算
 function calc() {
