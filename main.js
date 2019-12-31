@@ -32,12 +32,12 @@ function calc() {
     var normal_num = new Array(tableElements.length);
     var subtotal = new Array(tableElements.length);
 
-    console.log(tableElements[0]);
+    console.log(tableElements[0].td);
 
     for(var i=0; i<tableElements.length; i++){
         //少数を入力されたとき、負の数を入力されたとき、県民の数がもとの人数より多いとき対策
-        num[i] = Math.max(parseInt(tableElements[i].number.value), 0);
-        kenmin_num[i] = Math.min(Math.max(parseInt(tableElements[i].kenmin.value), 0), adult_num);
+        num[i] = Math.max(parseInt(tableElements[i].getElementsByClassName('number')[0].value), 0);
+        kenmin_num[i] = Math.min(Math.max(parseInt(tableElements[i].getElementsByClassName('kenmin')[0].value), 0), num[i]);
         normal_num[i] = num[i] - kenmin_num[i];
         //小計
         subtotal[i] = normal_num[i] * price[i] + kenmin_num[i] * (price[i] * (1 - discount_rate_kenmin));
@@ -49,8 +49,7 @@ function calc() {
         totalprice += st;
     }
 
-    //いっかい団体割引なしと表示しとく
-    document.getElementById("group").innerHTML = "団体割引適用なし";
+    
 
     //総人数を計算
     var totalnum = 0;
@@ -59,17 +58,19 @@ function calc() {
     }
 
     //10人以上だったら
-    if (num >= 10) {
+    if (num.reduce(function(total, data){return total + data}) >= 10) {
         totalprice = totalprice * (1 - discount_rate_group);
         for(var i=0; i<tableElements.length; i++){
             subtotal[i] = subtotal[i] * (1 - discount_rate_group);
         }
         document.getElementById("group").innerHTML = "団体割引適用あり";
+    }else{
+        document.getElementById("group").innerHTML = "団体割引適用なし";
     }
     
     //小計を表示
     for(var i=0; i<tableElements.length; i++){
-        tableElements[i].field.value = subtotal[i];
+        tableElements[i].getElementsByClassName('field')[0].value = subtotal[i];
     }
     
     //合計を表示
